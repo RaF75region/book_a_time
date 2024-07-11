@@ -1,0 +1,11 @@
+@book.api_HostAddress = http://localhost:5104
+
+GET {{book.api_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{book.api_HostAddress}}/todos/1
+Accept: application/json
+
+###
