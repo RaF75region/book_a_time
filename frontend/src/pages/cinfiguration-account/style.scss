@@ -1,0 +1,27 @@
+.time-picker{
+    .MuiInputBase-root{
+        display: flex;
+        padding: 0px;
+        justify-content: center;
+        align-items: center
+    }
+    input{
+        box-sizing: border-box;
+        max-width: 3rem;
+        padding: 0px;
+    }
+    fieldset{
+        border:0px;
+        margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-block-start: 0em;
+    padding-inline-start: 0em;
+    padding-inline-end: 0em;
+    padding-block-end: 0em;
+
+    }
+    .MuiTabs-flexContainer{
+        display: none !important;
+    }
+    // wi dth: 100px;
+}

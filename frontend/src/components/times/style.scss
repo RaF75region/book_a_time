@@ -1,0 +1,20 @@
+@mixin animation-mixin($name) {
+    @keyframes #{$name} {
+        30% {            
+            transform: rotate(-10deg);            
+        }
+        60% {                     
+            transform: rotate(10deg);            
+        }
+        100% {
+
+            transform: rotate(0);
+        }
+    }
+}
+
+@include animation-mixin(to-animation);
+
+.button-animation:hover {
+    animation: to-animation 0.3s;
+}

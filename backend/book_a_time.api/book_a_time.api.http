@@ -1,0 +1,40 @@
+@book_a_time.api_HostAddress = http://localhost:5266
+@url = v1/user
+
+GET {{book_a_time.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{book_a_time.api_HostAddress}}/{{v1/user}}/create/
+Accept: application/json
+
+###
+
+GET {{book_a_time.api_HostAddress}}/{{v1/user}}/
+Accept: application/json
+
+###
+
+PATCH {{book_a_time.api_HostAddress}}/{{v1/user}}/update-type/
+Accept: application/json
+
+###
+
+GET {{book_a_time.api_HostAddress}}/{{v1/service}}/
+Accept: application/json
+
+###
+
+POST {{book_a_time.api_HostAddress}}/{{v1/service}}/
+Accept: application/json
+
+###
+
+DELETE {{book_a_time.api_HostAddress}}/{{v1/service}}/
+Accept: application/json
+
+###
+
+GET {{book_a_time.api_HostAddress}}/{{v1/get-spicialists}}/
+Accept: application/json

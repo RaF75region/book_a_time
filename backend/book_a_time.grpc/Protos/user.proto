@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "book_a_time.gprc";
+
+package user;
+
+service UserRequests {  
+  rpc AddUser (User) returns (Reply);
+  rpc UpdateUserType (ChangeUserType) returns (Reply);
+  rpc GetUserForId (GetUser) returns (Reply);
+}
+
+message GetUser{
+  int64 Id = 1;
+}
+
+message ChangeUserType {
+  UserType NewType = 1;
+}
+
+message User {
+  int64 Id = 1;
+  string Name = 2;
+  UserType Type = 3;
+  string UrlPhoto = 4;
+  string Email = 5;
+  string FullName = 6;
+  float Rating = 7;
+}
+
+message Reply {
+  bool Error = 1;
+  oneof Object {
+    User User = 2;
+  }
+  string Messsage = 4;
+}
+
+enum UserType {
+  USER = 0;
+  SPECIALIST = 1;
+}

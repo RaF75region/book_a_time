@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{1E17582B-D6DC-4686-9348-47DCAAC72D86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book_a_time.grpc", "backend\book_a_time.grpc\book_a_time.grpc.csproj", "{29A5E08F-1686-433F-AA67-6DDAF6CB5652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book_a_time.TelegramBot", "backend\book_a_time.TelegramBot\book_a_time.TelegramBot.csproj", "{672C48C0-9BD5-4D23-B3F6-807D3581A83D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book_a_event.crons", "backend\book_a_event.crons\book_a_event.crons.csproj", "{078DCC68-7461-4A51-9933-BCD8E358CB8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book_a_time.api", "backend\book_a_time.api\book_a_time.api.csproj", "{AB82B1C5-C545-476B-8A91-16230D621D12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book_a_time.migrations", "backend\book_a_time.migrations\book_a_time.migrations.csproj", "{AEC4883D-4DBF-47AC-806D-A8AD6F2B2349}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book_a_time.application", "backend\book_a_time.application\book_a_time.application.csproj", "{F4910595-BEA9-41E1-BB36-9E4930AB5F80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29A5E08F-1686-433F-AA67-6DDAF6CB5652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A5E08F-1686-433F-AA67-6DDAF6CB5652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A5E08F-1686-433F-AA67-6DDAF6CB5652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A5E08F-1686-433F-AA67-6DDAF6CB5652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{672C48C0-9BD5-4D23-B3F6-807D3581A83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672C48C0-9BD5-4D23-B3F6-807D3581A83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{672C48C0-9BD5-4D23-B3F6-807D3581A83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672C48C0-9BD5-4D23-B3F6-807D3581A83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{078DCC68-7461-4A51-9933-BCD8E358CB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078DCC68-7461-4A51-9933-BCD8E358CB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078DCC68-7461-4A51-9933-BCD8E358CB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078DCC68-7461-4A51-9933-BCD8E358CB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB82B1C5-C545-476B-8A91-16230D621D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB82B1C5-C545-476B-8A91-16230D621D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB82B1C5-C545-476B-8A91-16230D621D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB82B1C5-C545-476B-8A91-16230D621D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC4883D-4DBF-47AC-806D-A8AD6F2B2349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC4883D-4DBF-47AC-806D-A8AD6F2B2349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC4883D-4DBF-47AC-806D-A8AD6F2B2349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC4883D-4DBF-47AC-806D-A8AD6F2B2349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4910595-BEA9-41E1-BB36-9E4930AB5F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4910595-BEA9-41E1-BB36-9E4930AB5F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4910595-BEA9-41E1-BB36-9E4930AB5F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4910595-BEA9-41E1-BB36-9E4930AB5F80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29A5E08F-1686-433F-AA67-6DDAF6CB5652} = {1E17582B-D6DC-4686-9348-47DCAAC72D86}
+		{672C48C0-9BD5-4D23-B3F6-807D3581A83D} = {1E17582B-D6DC-4686-9348-47DCAAC72D86}
+		{078DCC68-7461-4A51-9933-BCD8E358CB8C} = {1E17582B-D6DC-4686-9348-47DCAAC72D86}
+		{AB82B1C5-C545-476B-8A91-16230D621D12} = {1E17582B-D6DC-4686-9348-47DCAAC72D86}
+		{AEC4883D-4DBF-47AC-806D-A8AD6F2B2349} = {1E17582B-D6DC-4686-9348-47DCAAC72D86}
+		{F4910595-BEA9-41E1-BB36-9E4930AB5F80} = {1E17582B-D6DC-4686-9348-47DCAAC72D86}
+	EndGlobalSection
+EndGlobal

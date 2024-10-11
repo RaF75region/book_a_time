@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "book_a_time.gprc";
+
+package service;
+
+service ServesRequests {
+  rpc AddOrUpdateUserService (MessageService) returns (MessageReplyService);
+  rpc GetUserServices (MessageUserId) returns (MessageReplyService);
+}
+
+message MessageService {
+  string id = 1;
+  int64 userId = 2;
+  string title = 3;
+  string description = 4;
+  int32 time_progress = 5;
+  double price = 6;
+}
+
+message MessageUserId {
+  int64 userId = 2;
+}
+
+message MessageReplyService {
+  bool Error = 1;
+  repeated MessageService MultipleUserService = 2;
+  MessageService SingleUserService = 3;
+  string Message = 4;
+}

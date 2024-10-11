@@ -1,0 +1,10 @@
+.MuiDateCalendar-root{
+    width: 100% !important;
+    .MuiDayCalendar-header{
+        justify-content: space-between;        
+    }
+    .MuiDayCalendar-weekContainer{
+        width: 100% !important;
+        justify-content: space-between;
+    }
+}
