@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Avatar, Box, Divider, Stack, Typography } from '@mui/joy';
@@ -11,24 +11,25 @@ import { changeUserType, getUserById, handleSwitch } from '../../states/account/
 import { userInfo } from '../../states/account/slice';
 import Switch from '@mui/material/Switch';
 import { UserType } from '../../models/user_pb';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from '@mui/material';
+import SlideMenu from './components/slide';
 
 function UserProfile() {
-    // tg.enableVerticalSwipes();
-    // tg.MainButton.show().setParams({
-    //     text: "bisness",
-    // });    
-    const { obj, loading, isSpecialist} = useAppSelector(userInfo);
+    const [checked, setChecked] = useState(false);
+
+    const { obj, loading, isSpecialist } = useAppSelector(userInfo);
     const user = obj.data;
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if(user == null)
+        if (user == null)
             dispatch(getUserById(userData?.id ?? 0));
     }, [])
 
-    useEffect(()=>{
-        dispatch(changeUserType({ userId: user?.id ?? 0 , userType: isSpecialist ? UserType.SPECIALIST : UserType.USER}))
-    },[isSpecialist])
+    useEffect(() => {
+        dispatch(changeUserType({ userId: user?.id ?? 0, userType: isSpecialist ? UserType.SPECIALIST : UserType.USER }))
+    }, [isSpecialist])
 
     const getAvatar = () => {
         if (loading)
@@ -67,11 +68,24 @@ function UserProfile() {
                     </Stack>
 
                 </Stack>
+                <Stack direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    gap={0}>
+                    <Switch
+                        onChange={e => dispatch(handleSwitch(e.target.checked))}
+                        checked={isSpecialist}
+                    ></Switch>
+                    <IconButton
+                        onClick={_ => setChecked(true)}
+                        edge="end"
+                        aria-label="edit"
+                        title="Edit">
+                            <EditIcon />
+                    </IconButton>
 
-                <Switch
-                    onChange={e => dispatch(handleSwitch(e.target.checked))}
-                    checked={isSpecialist}
-                ></Switch>
+                </Stack>
+
             </Stack>
 
             <Typography
@@ -101,6 +115,11 @@ function UserProfile() {
                     <EventsForUser />
             }
         </Box>
+        <SlideMenu
+            checked={checked}
+            setChecked={setChecked}
+            handlerAddService={()=>{}}
+        />
     </>
     );
 }

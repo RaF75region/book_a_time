@@ -20,7 +20,7 @@ public class ProviderApi : IProviderApi
     {
         var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
-        var response = await _httpClient.PostAsync("create-user", content);
+        var response = await _httpClient.PostAsync("/v1/user/create", content);
 
         response.EnsureSuccessStatusCode();
 

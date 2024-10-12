@@ -57,7 +57,6 @@ function renderItem({ item, handleRemoveItem }: RenderItemOptions) {
                 </Stack>
             }
         >
-            {/* <ListItemText primary={item} /> */}
             <ListItemContent>
                 <Stack spacing={0.1}
                     direction="column"
@@ -73,13 +72,13 @@ function renderItem({ item, handleRemoveItem }: RenderItemOptions) {
                         >
                             {item.description}
                         </Typography>
-                        </Typography>  
-                        <Stack direction="row"
+                    </Typography>
+                    <Stack direction="row"
                         justifyContent="start"
                         alignItems="start"
                         spacing={3}
                         marginTop={2}>
-                        <Typography color="success" level="body-sm">{item.price}<CurrencyRubleIcon sx={{fontSize:14}}/></Typography>
+                        <Typography color="success" level="body-sm">{item.price}<CurrencyRubleIcon sx={{ fontSize: 14 }} /></Typography>
                         <Stack direction="row"
                             justifyContent="center"
                             alignItems="start"
@@ -87,7 +86,7 @@ function renderItem({ item, handleRemoveItem }: RenderItemOptions) {
                             <AccessTimeIcon fontSize="small" />
                             <Typography level="body-sm">{item.timeProgress} min</Typography>
                         </Stack>
-                    </Stack>                  
+                    </Stack>
                 </Stack>
             </ListItemContent>
         </ListItem>
@@ -107,8 +106,7 @@ export default function ListServices() {
     };
 
     const handleRemoveItem = (idItem: string) => {
-        if(idItem !== undefined)
-        {
+        if (idItem !== undefined) {
             dispatch(removeService(idItem))
             dispatch(removeServiceAsync(list.filter(s => s.id == idItem)[0]));
         }

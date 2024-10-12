@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ArtTrackIcon from '@mui/icons-material/ArtTrack';
 import InfoIcon from '@mui/icons-material/Info';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import Slide from "@mui/material";
+
 
 export default function Specialist() {
     const { id } = useParams();

@@ -2,22 +2,16 @@
 
 #nullable disable
 
-namespace book_a_time.grpc.Migrations
+namespace book_a_time.migrations.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedNewColumns : Migration
+    public partial class AddedFields : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Email",
-                table: "Users",
-                type: "TEXT",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "FullName",
+                name: "About",
                 table: "Users",
                 type: "TEXT",
                 nullable: true);
@@ -27,11 +21,7 @@ namespace book_a_time.grpc.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Email",
-                table: "Users");
-
-            migrationBuilder.DropColumn(
-                name: "FullName",
+                name: "About",
                 table: "Users");
         }
     }

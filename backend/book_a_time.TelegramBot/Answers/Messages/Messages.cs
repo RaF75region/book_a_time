@@ -24,10 +24,14 @@ public sealed class Messages
         {
             case "/start":
                 var t = await client.GetUserProfilePhotosAsync(update.Message.From.Id);
+
                 var largestPhoto = t.Photos[0].Last();
                 var file = await client.GetFileAsync(largestPhoto.FileId);
+
                 string fileUrl = $"https://api.telegram.org/file/bot{Program.keyBotTelegram}/{file.FilePath}";
+
                 var user = update.Message.From;
+
                 var result = await _api.CreateUserAync(new()
                 {
                     Id = user.Id,
@@ -36,16 +40,11 @@ public sealed class Messages
                     UrlPhoto = fileUrl,
                     FullName = user.FirstName,
                     Rating = 0.0f,
+                    Title = string.Empty,
+                    Tags = string.Empty,
+                    About = string.Empty
                 });
-                // var result = Program.UserClient.AddUser(new gprc.User()
-                // {
-                //     Id = user.Id,
-                //     Name = user.Username,
-                //     Type = UserType.User,
-                //     UrlPhoto = fileUrl,
-                //     FullName = user.FirstName,
-                //     Rating = 0.0f,
-                // });
+
                 if (!result.Error)
                     await client.SendTextMessageAsync(update.Message.Chat.Id, "Поздравляю!!! <b>ваша учетная запись создана успешно</b>",
                             parseMode: ParseMode.Html,

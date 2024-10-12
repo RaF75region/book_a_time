@@ -17,6 +17,9 @@ public sealed class User
     public string? UrlPhoto { get;set; }
     public float Rating { get; set; }
     public ICollection<Service>? Services { get; set; }
+    public string? Tags { get; set; }
+    public string? Title { get; set; }
+    public string? About { get; set; }
 }
 
 public enum UserType {

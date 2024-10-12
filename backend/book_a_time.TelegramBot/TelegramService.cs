@@ -1,5 +1,3 @@
-using System;
-using book_a_time.gprc;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;

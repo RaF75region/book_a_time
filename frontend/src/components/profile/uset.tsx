@@ -1,10 +1,8 @@
 import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";
 import Stack from "@mui/joy/Stack";
 import Textarea from "@mui/joy/Textarea";
 import Typography from "@mui/joy/Typography";
-import AddCommentOutlinedIcon from '@mui/icons-material/AddCommentOutlined';
 
 export default function EventsForUser() {
     return <Stack direction="column"

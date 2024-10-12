@@ -16,3 +16,8 @@ export async function changeUserTypeForId(idUser: number, newType: UserType)
 {
     await axios.patch(`${apiUrl}/update-type?idUser=${idUser}&newType=${newType}`);
 }
+
+export async function GetSpecialists(type: UserType)
+{
+    return (await axios.get(`${apiUrl}/get-spicialists?type=${type}`)).data;
+}

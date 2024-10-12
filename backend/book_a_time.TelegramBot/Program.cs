@@ -12,7 +12,7 @@ var builder = new ConfigurationBuilder()
 
 IConfiguration configuration = builder.Build();
 
-keyBotTelegram = configuration["key_for_telegram"];
+keyBotTelegram = configuration["key_for_telegram"]!;
 grpcChannel = GrpcChannel.ForAddress("https://localhost:7163");
 UserClient = new UserRequests.UserRequestsClient(grpcChannel);
 

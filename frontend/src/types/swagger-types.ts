@@ -116,6 +116,22 @@ export interface paths {
         patch: operations["UpdateType"];
         trace?: never;
     };
+    "/v1/user/get-spicialists": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserByType"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -154,6 +170,14 @@ export interface components {
             /** Format: float */
             rating?: number;
             services?: components["schemas"]["Service"][] | null;
+            tags?: string | null;
+            title?: string | null;
+            about?: string | null;
+        };
+        UserIEnumerableReturnModel: {
+            error?: boolean;
+            message?: string | null;
+            data?: components["schemas"]["User"][] | null;
         };
         UserReturnModel: {
             error?: boolean;
@@ -355,6 +379,28 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserReturnModel"];
+                };
+            };
+        };
+    };
+    getUserByType: {
+        parameters: {
+            query: {
+                type: components["schemas"]["UserType"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserIEnumerableReturnModel"];
                 };
             };
         };

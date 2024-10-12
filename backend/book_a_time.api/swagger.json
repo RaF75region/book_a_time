@@ -403,6 +403,18 @@
               "$ref": "#/components/schemas/Service"
             },
             "nullable": true
+          },
+          "tags": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "about": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

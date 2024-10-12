@@ -4,6 +4,7 @@ import stepperRiducer from './states/stepper/slice';
 import serviceRiducer from './states/services/slice';
 import orderRiducer from './states/order/slice';
 import accountRiducer from './states/account/slice'
+import specialistsReducer from './states/specialists/slice';
 
 export const reduxApp = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const reduxApp = configureStore({
     stepper: stepperRiducer,
     service: serviceRiducer,
     order: orderRiducer,
-    account: accountRiducer
+    account: accountRiducer,
+    specialists: specialistsReducer
   }
 })
 

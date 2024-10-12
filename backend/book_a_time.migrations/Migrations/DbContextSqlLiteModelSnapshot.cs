@@ -2,25 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using book_a_time.grpc;
+using book_a_time.migrations;
 
 #nullable disable
 
-namespace book_a_time.grpc.Migrations
+namespace book_a_time.migrations.Migrations
 {
     [DbContext(typeof(DbContextSqlLite))]
-    [Migration("20240907133403_AddTableService")]
-    partial class AddTableService
+    partial class DbContextSqlLiteModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
 
-            modelBuilder.Entity("book_a_time.grpc.partials.Service", b =>
+            modelBuilder.Entity("book_a_time.migrations.Models.Service", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,10 +47,13 @@ namespace book_a_time.grpc.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("book_a_time.grpc.partials.User", b =>
+            modelBuilder.Entity("book_a_time.migrations.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("About")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
@@ -65,7 +65,13 @@ namespace book_a_time.grpc.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Rating")
+                    b.Property<float>("Rating")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Tags")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Type")
@@ -80,9 +86,9 @@ namespace book_a_time.grpc.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("book_a_time.grpc.partials.Service", b =>
+            modelBuilder.Entity("book_a_time.migrations.Models.Service", b =>
                 {
-                    b.HasOne("book_a_time.grpc.partials.User", "User")
+                    b.HasOne("book_a_time.migrations.Models.User", "User")
                         .WithMany("Services")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -91,7 +97,7 @@ namespace book_a_time.grpc.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("book_a_time.grpc.partials.User", b =>
+            modelBuilder.Entity("book_a_time.migrations.Models.User", b =>
                 {
                     b.Navigation("Services");
                 });

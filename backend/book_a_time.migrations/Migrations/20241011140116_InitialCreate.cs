@@ -3,20 +3,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace book_a_time.grpc.Migrations
+namespace book_a_time.migrations.Migrations
 {
     /// <inheritdoc />
-    public partial class AddTableService : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<decimal>(
-                name: "Rating",
-                table: "Users",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: 0m);
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
+                    FullName = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Type = table.Column<int>(type: "INTEGER", maxLength: 100, nullable: false),
+                    UrlPhoto = table.Column<string>(type: "TEXT", nullable: true),
+                    Rating = table.Column<float>(type: "REAL", nullable: false),
+                    Tags = table.Column<string>(type: "TEXT", nullable: true),
+                    Title = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Services",
@@ -52,9 +64,8 @@ namespace book_a_time.grpc.Migrations
             migrationBuilder.DropTable(
                 name: "Services");
 
-            migrationBuilder.DropColumn(
-                name: "Rating",
-                table: "Users");
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
