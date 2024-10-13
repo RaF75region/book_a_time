@@ -119,5 +119,32 @@ public static class UserControllers
         .WithTags("Users")
         .WithName("getUserByType")
         .WithOpenApi();
+
+        app.MapPut($"{url}/update", async (
+            [FromServices] IRepositoryUser repositoryUser,
+            [FromBody] User user
+        ) =>
+        {
+            try
+            {
+                await repositoryUser.UpdateAsync(user);
+                return new ReturnModel<User>()
+                {
+                    Error = false,
+                    Data = user
+                };
+            }
+            catch(Exception ex)
+            {
+                return new ReturnModel<User>()
+                {
+                    Error = true,
+                    Message = ex?.InnerException?.Message
+                };
+            }
+        })
+        .WithTags("Users")
+        .WithName("update")
+        .WithOpenApi();
     }
 }

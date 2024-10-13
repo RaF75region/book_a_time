@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserReturnModel, UserType } from "../types/types";
+import { User, UserReturnModel, UserType } from "../types/types";
 const apiUrl =  `${process.env.REACT_APP_DEFAULT_URL_API}/v1/user`;
 
 if (!apiUrl) {
@@ -20,4 +20,9 @@ export async function changeUserTypeForId(idUser: number, newType: UserType)
 export async function GetSpecialists(type: UserType)
 {
     return (await axios.get(`${apiUrl}/get-spicialists?type=${type}`)).data;
+}
+
+export async function Update(user: User)
+{
+    return (await axios.put(`${apiUrl}/update`, user)).data;
 }

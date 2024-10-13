@@ -21,6 +21,11 @@ Accept: application/json
 
 ###
 
+PATCH {{book_a_time.api_HostAddress}}/{{v1/user}}/update/
+Accept: application/json
+
+###
+
 GET {{book_a_time.api_HostAddress}}/{{v1/service}}/
 Accept: application/json
 

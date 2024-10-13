@@ -20,6 +20,7 @@ public sealed class User
     public string? Tags { get; set; }
     public string? Title { get; set; }
     public string? About { get; set; }
+    public string? Description { get; set; }
 }
 
 public enum UserType {

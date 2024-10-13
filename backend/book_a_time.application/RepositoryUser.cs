@@ -41,4 +41,11 @@ public class RepositoryUser : IRepositoryUser
         user.Type = type;
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
+    {
+        _context.Update(user);
+        await _context.SaveChangesAsync(cancellationToken);
+        return user;
+    }
 }

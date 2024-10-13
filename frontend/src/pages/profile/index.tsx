@@ -118,7 +118,6 @@ function UserProfile() {
         <SlideMenu
             checked={checked}
             setChecked={setChecked}
-            handlerAddService={()=>{}}
         />
     </>
     );

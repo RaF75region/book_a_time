@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState } from '../../redux-app';
 import { getUser, changeDataUser as changedData } from '../../services/userService';
-import { UserReturnModel, UserType } from '../../types/types';
-import { changeUserTypeForId } from '../../api/user.api';
+import { User, UserReturnModel, UserType } from '../../types/types';
+import { changeUserTypeForId, Update } from '../../api/user.api';
 
 export const getUserById = createAsyncThunk(
     'account/getUserById',
@@ -23,11 +23,23 @@ export const changeUserType = createAsyncThunk(
     }
 )
 
+export const updateUser = createAsyncThunk(
+    'account/updateUser',
+    async ({ user }: { user?: User }) => {
+        if (!user) {
+            throw new Error('User is undefined');
+        }
+        await Update(user);
+    }
+)
+
 export interface IAccount {
     obj: UserReturnModel,
     loading: boolean,
     updating: boolean,
-    isSpecialist: boolean
+    isSpecialist: boolean,
+    tags: string[],
+    isUpdateUser: boolean
 }
 
 const initialState: IAccount = {
@@ -39,11 +51,17 @@ const initialState: IAccount = {
             fullName: null,
             email: null,
             type: undefined,
+            title: null,
+            about: null,
+            description: null,
+            tags: null,
             urlPhoto: null,
             rating: undefined
         },
         message: ""
     },
+    isUpdateUser: false,
+    tags: [],
     updating: false,
     loading: false,
     isSpecialist: false
@@ -56,7 +74,43 @@ export const accountSlice = createSlice({
     reducers: {
         handleSwitch: (state, action: PayloadAction<boolean>) => {
             state.isSpecialist = action.payload;
-        }
+        },
+        changeAbout: (state, action: PayloadAction<string>) => {
+            if (state.obj.data) {
+                state.obj.data.about = action.payload;
+                state.isUpdateUser = true;
+            }
+        },
+        changeTitle: (state, action: PayloadAction<string>) => {
+            if (state.obj.data) {
+                state.obj.data.title = action.payload;
+                state.isUpdateUser = true;
+            }
+        },
+        changeDescription: (state, action: PayloadAction<string>) => {
+            if (state.obj.data) {
+                state.obj.data.description = action.payload;
+                state.isUpdateUser = true;
+            }
+        },
+        addNewTag: (state, action: PayloadAction<string>) => {
+            if (state.obj.data && action.payload != "") {
+                state.tags = [...state.tags, action.payload]
+                state.obj.data.tags = state.tags.join(',');
+                state.isUpdateUser = true;
+            }
+        },
+        removeTag: (state, action: PayloadAction<string>) => {
+            if (state.obj.data) {
+                state.tags = state.tags.filter(tag => tag !== action.payload);
+                state.obj.data.tags = state.tags.join(',');
+                state.isUpdateUser = true;
+            }
+        },
+        changeIsUpdateUser: (state, action: PayloadAction<boolean>) =>
+            {
+                state.isUpdateUser = action.payload;
+            }
     },
     extraReducers: (builder) => {
         builder.addCase(getUserById.pending, (state) => {
@@ -65,6 +119,7 @@ export const accountSlice = createSlice({
         builder.addCase(getUserById.fulfilled, (state, action) => {
             state.loading = false;
             state.obj = action.payload;
+            state.tags = action.payload?.data?.tags?.split(',') ?? [];
             state.isSpecialist = action.payload?.data?.type === 1 ? true : false;
         })
         builder.addCase(changeUserType.pending, (state) => {
@@ -76,6 +131,6 @@ export const accountSlice = createSlice({
     }
 })
 
-export const { handleSwitch } = accountSlice.actions
+export const { handleSwitch, changeTitle, changeDescription, addNewTag, changeAbout, removeTag, changeIsUpdateUser } = accountSlice.actions
 export const userInfo = (state: RootState) => state.account
 export default accountSlice.reducer

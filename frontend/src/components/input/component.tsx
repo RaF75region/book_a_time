@@ -7,11 +7,12 @@ import Input from '@mui/joy/Input';
 interface IProps {
     name:string,
     label: string,
-    placeholder: string,
+    placeholder?: string,
     helperText?: string
     fullWidth:boolean
     value?: string,
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    endIcon?: JSX.Element
 }
 
 export default function CustInput({
@@ -21,11 +22,26 @@ export default function CustInput({
     helperText,
     fullWidth,
     value,
-    onChange
+    onChange,
+    endIcon
 }: IProps) {
+
+    const getIcon=()=>{
+        if(endIcon){
+            return endIcon
+        }
+        return null
+    }
+
     return <FormControl sx={{width:'100%'}}>
         <FormLabel>{label}</FormLabel>
-        <Input value={value} onChange={onChange} fullWidth={fullWidth} name={name} placeholder={placeholder} />
+        <Input value={value} onChange={onChange} fullWidth={fullWidth} name={name} placeholder={placeholder}
+            endDecorator={
+                <>
+                {getIcon()}
+                </>
+            }
+            />
         <FormHelperText>{helperText}</FormHelperText>
     </FormControl>
 

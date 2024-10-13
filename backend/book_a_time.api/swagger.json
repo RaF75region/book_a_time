@@ -284,6 +284,36 @@
           }
         }
       }
+    },
+    "/v1/user/update": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserReturnModel"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -413,6 +443,10 @@
             "nullable": true
           },
           "about": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
             "type": "string",
             "nullable": true
           }

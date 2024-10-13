@@ -8,6 +8,5 @@ public interface IRepositoryUser
     public Task<User?> GetUserByIddAsync(long id, CancellationToken cancellationToken = default);
     public Task ChangeTypeAsync(long id ,UserType type, CancellationToken cancellationToken = default);
     public Task<IEnumerable<User>> GetUsersAsyncByType(UserType type, CancellationToken cancellationToken = default);
-
-
+    public Task<User> UpdateAsync (User user, CancellationToken cancellationToken = default);
 }

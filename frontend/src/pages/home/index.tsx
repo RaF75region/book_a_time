@@ -43,7 +43,7 @@ function SpeciaLists() {
                         photo_url={s.urlPhoto}
                         fullname={s.fullName}
                         title={s.title}
-                        description={s.about}
+                        description={s.description}
                         raiting={s.rating}
                         readOnlyRaiting={true}
                         tags = {s.tags != null ? s.tags.split(',').map(item => item.trim()) : []}
@@ -63,8 +63,8 @@ function SpeciaLists() {
                 alignItems="stretch"
                 spacing={1}
                 paddingLeft={3}
-                paddingRight={3}>
-                <DrawerNavigation />
+                paddingRight={3}
+                marginTop={1}>
                 <Input
                     fullWidth
                     placeholder="Search a specialist"

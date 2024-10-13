@@ -1,47 +1,49 @@
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
-import Input from "@mui/joy/Input";
 import Stack from "@mui/joy/Stack";
 import Slide from "@mui/material/Slide";
 import CloseIcon from '@mui/icons-material/Close';
 import CustInput from "../../../components/input/component";
 import CustTextarea from "../../../components/textarea/component";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import {
-changeDescription,
-changeTitle,
-changePrice,
-changeTimeProgress,
-} from "../../../states/services/slice";
-import { dataService } from "../../../states/services/slice";
-import { addServiceForUser } from "../../../states/services/slice";
-import { userData } from "../../../services/init";
-import { Divider, List, Typography } from "@mui/joy";
-import SocialLink from "../../../components/social/link";
-import CustSpeedDial from "./speed-dial";
+import { userInfo } from "../../../states/account/slice";
+import { changeDescription, addNewTag, changeTitle, changeAbout, removeTag, changeIsUpdateUser } from "../../../states/account/slice";
+import { updateUser } from "../../../states/account/slice";
+import AddIcon from '@mui/icons-material/Add';
+import { Chip } from "@mui/joy";
+import ChipDelete from '@mui/joy/ChipDelete';
+import DeleteForever from '@mui/icons-material/DeleteForever';
 
 interface IProps {
     checked: boolean,
     setChecked: Dispatch<SetStateAction<boolean>>,
-    handlerAddService: () => void,
 }
 
 
 export default function SlideMenu({
     checked,
-    setChecked,
-    handlerAddService,
+    setChecked
 }: IProps) {
-
+    const [newTag, setNewTag] = useState("");
     const dispatch = useAppDispatch();
-    const reactDataService = useAppSelector(dataService)
+    const user = useAppSelector(userInfo).obj.data;
+    const tags = useAppSelector(userInfo).tags;
+    const isUpdateUser = useAppSelector(userInfo).isUpdateUser;
 
-    const onSubmit = () => {
-        // dispatch(addServiceForUser({... reactDataService, userId: userData?.id ?? 0}));
-        handlerAddService();
+    const onSubmit = () =>
+    {
+        dispatch(updateUser({ user: user! }));
+        dispatch(changeIsUpdateUser(false));
+        setChecked(false);
+        setNewTag("");
+    }
+
+    const addTag = () => {
+        dispatch(addNewTag(newTag));
+        dispatch(updateUser({ user: user! }));
+        setNewTag("");
     }
 
     return <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
@@ -53,10 +55,19 @@ export default function SlideMenu({
             height: '100%',
             boxShadow: "-1px 13px 20px",
             backgroundColor: "white",
-            zIndex: 9999
+            zIndex: 9999,
         }} >
             <Box sx={{ width: '100%' }} padding={2} display="flex" justifyContent='end'>
-                <IconButton variant="soft" onClick={_ => setChecked(!checked)}>
+                <IconButton variant="soft" onClick={_ => {
+                    if(!isUpdateUser)
+                    {
+                        setChecked(!checked);
+                        dispatch(changeIsUpdateUser(false));
+                        setNewTag("");
+                    }
+                    else
+                        alert("Вы изменили инфомрацию. Сохраните пожалуйста изменения )))");
+                }}>
                     <CloseIcon />
                 </IconButton>
             </Box>
@@ -66,23 +77,65 @@ export default function SlideMenu({
                 spacing={2}
                 paddingLeft={2}
                 paddingRight={2}
-                sx={{ width: '100%' }}>
-                {/* <CustInput
-                    value={reactDataService.title}
+                sx={{ width: '100%', height: "80%", overflow: "scroll" }}>
+                <CustInput
+                    value={user?.title ?? ''}
                     onChange={e => dispatch(changeTitle(e.target.value))}
-                    name="about"
-                    label="О себе"
-                    placeholder="..."
+                    name="title"
+                    label="Кто вы?"
                     fullWidth={true}
-                /> */}
+                />
                 <CustTextarea
-                    value={reactDataService.description}
-                    onChange={e => dispatch(changeDescription(e.target.value))}
+                    value={user?.about ?? ''}
+                    onChange={e => dispatch(changeAbout(e.target.value))}
                     name="about"
                     label="Расскажите о себе..."
                     placeholder=""
-                    minRows={6}
+                    minRows={4}
                 />
+                <CustTextarea
+                    value={user?.description ?? ''}
+                    onChange={e => dispatch(changeDescription(e.target.value))}
+                    name="description"
+                    label="Что умеете?"
+                    placeholder=""
+                    minRows={2}
+                />
+                <CustInput
+                    value={newTag}
+                    onChange={e => setNewTag(e.target.value)}
+                    name="title"
+                    label="Tags"
+                    fullWidth={true}
+                    endIcon={<IconButton onClick={addTag} variant="solid" color="danger"><AddIcon /></IconButton>}
+                />
+                <Box sx={{ display: "flex", gap: 1, justifyContent: "start", width: "100%", flexWrap:"wrap"}}>
+                    {
+                        tags.map((t, i) =>
+                            <Chip
+                                key = {`tag_${i}`}
+                                color="success"
+                                size="lg"
+                                variant="outlined"
+                                endDecorator={
+                                    <ChipDelete
+                                        color="danger"
+                                        variant="plain"
+                                        onClick={() =>
+                                            {
+                                                dispatch(removeTag(t));
+                                                dispatch(updateUser({ user: user! }));
+                                            }}
+                                    >
+                                        <DeleteForever />
+                                    </ChipDelete>
+                                }
+
+                            >
+                                {t}
+                            </Chip>)
+                    }
+                </Box>
                 {/* <Stack direction="row"
                     justifyContent="space-between"
                     spacing={1}
@@ -118,18 +171,18 @@ export default function SlideMenu({
                         }}
                     />
                 </Stack> */}
-                {/* <Button onClick={onSubmit} variant="solid" color="success">
+                <Button onClick={onSubmit} variant="solid" color="success">
                     Сохранить
-                </Button> */}
-                
-                
+                </Button>
+
+
             </Stack>
-            <Box width="100%" padding={0} margin={0}>
+            {/* <Box width="100%" padding={0} margin={0}>
                 <SocialLink />
                 <SocialLink />
                 <SocialLink />
                 </Box>
-            <CustSpeedDial />
+            <CustSpeedDial /> */}
         </Box>
 
     </Slide>

@@ -7,7 +7,7 @@ interface IProps {
     name: string,
     label: string,
     value?: string,
-    placeholder: string,
+    placeholder?: string,
     helperText?: string,
     minRows?: number,
     endDecoration?: JSX.Element,
